@@ -1,8 +1,14 @@
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
+
+  const logout = () => {
+    // reset states from the user.
+    localStorage.clear();
+  }
+
   return (
-    <nav className="flex justify-between bg-gray-900 p-6 text-white">
+    <nav className="flex justify-between bg-indigo-900 p-6 text-white">
       <div>
         <NavLink to="/">Home</NavLink>
       </div>
@@ -16,7 +22,9 @@ const Navbar = () => {
           </NavLink>
         </div>
       ) : (
-        <></>
+        <div className="flex justify-center flex-col sm:flex-row">
+          <p className="px-3" onClick={() => logout()} >Logout</p>
+        </div>
       )}
     </nav>
   );
