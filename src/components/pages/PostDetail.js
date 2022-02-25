@@ -5,15 +5,17 @@ import { formatDate } from "../../helpers/formatDate";
 import { getSpecificPost } from "../../services/posts";
 
 import Comment from "../Comment";
+import NewComment from "../NewComment";
 
 const PostDetail = () => {
   const [loading, setLoading] = useState(false);
   const [currPost, setCurrPost] = useState({ comments: [] });
-  const id = useSelector((state) => state.post.value.id);
+  const id = useSelector((state) => state.post.value.postId);
   const username = useSelector((state) => state.user.value.username);
 
   useEffect(() => {
     setLoading(true);
+
     getSpecificPost(id)
       .then((res) => {
         const post = res.post;
@@ -41,7 +43,7 @@ const PostDetail = () => {
 
   // Check the posts state, if there are posts shows them, else, show there are no posts.
   return (
-    <article className="flex flex-col items-center p-6 m-12 border border-indigo-400 rounded shadow-indigo-400">
+    <article className="flex flex-col items-center p-6 sm:m-12 sm:border sm:border-indigo-400 sm:rounded sm:shadow-indigo-400">
       <div className="flex flex-col items-center w-full">
         <div className="flex pb-3 justify-center border-b border-b-gray-700 w-full">
           {loading ? (
@@ -52,9 +54,7 @@ const PostDetail = () => {
         </div>
         <div className="flex justify-between text-gray-700 w-full p-3">
           {loading ? (
-            <h2 className="text-2xl animate-pulse">
-              Loading...
-            </h2>
+            <h2 className="text-2xl animate-pulse">Loading...</h2>
           ) : (
             <>
               <p className="px-6">{currPost.author}</p>
@@ -66,12 +66,21 @@ const PostDetail = () => {
       <div className="p-3">
         <p className="text-sm md:text-base">{currPost.text}</p>
       </div>
-      <div>
+      <div className="w-full justify-self-start p-3">
+        <section>
+          <h3 className="font-bold underline ">Comments: </h3>
+        </section>
         {currPost.comments.map((comment) => {
           return (
-            <Comment author={comment.author.username} text={comment.text} />
+            <Comment
+              key={comment._id}
+              author={comment.author.username}
+              text={comment.text}
+            />
           );
         })}
+      </div>
+      <div>
         {username === "" ? (
           <div className="pt-6">
             <Link
@@ -87,10 +96,10 @@ const PostDetail = () => {
             >
               Register
             </Link>
-            <p className="pt-3">To see or create comments</p>
+            <p className="pt-3 text-center">To create comments</p>
           </div>
         ) : (
-          <p>Create your comment</p>
+          <NewComment post={currPost} updateComment={setCurrPost} />
         )}
       </div>
     </article>

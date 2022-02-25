@@ -7,9 +7,7 @@ const Navbar = () => {
   const dispatch = useDispatch()
 
   const clickLogout = () => {
-    // Resets the global redux state for the username.
     dispatch(logout());
-    localStorage.clear();
   }
 
   return (
@@ -18,7 +16,7 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
       </div>
       {username === "" ? (
-        <div className="flex justify-center flex-col sm:flex-row">
+        <div className="flex justify-center">
           <NavLink className="px-3" to="/login">
             Log in
           </NavLink>
@@ -27,8 +25,8 @@ const Navbar = () => {
           </NavLink>
         </div>
       ) : (
-        <div className="flex justify-center flex-col sm:flex-row">
-          <p className="px-3" onClick={() => clickLogout()} >Logout</p>
+        <div className="flex justify-center">
+          <p className="px-3 hover:cursor-pointer" onClick={clickLogout} >Logout</p>
         </div>
       )}
     </nav>

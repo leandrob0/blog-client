@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialStateValue = { id: "" };
+const initialStateValue = JSON.parse(localStorage.getItem("postId")) || { postId: "" };
 
 export const postSlice = createSlice({
   name: "post",
@@ -10,7 +10,8 @@ export const postSlice = createSlice({
       state.value = action.payload;
     },
     resetClicked: (state) => {
-      state.value = initialStateValue;
+      localStorage.removeItem("postId");
+      state.value = { postId: "" };
     },
   },
 });

@@ -31,8 +31,8 @@ const Login = () => {
     loginUser(body)
       .then(user => {
         // Updates the redux global state to know which user makes a comment when logged in.
-        dispatch(login({id: user._id, username: user.username, admin: user.admin}));
-        localStorage.setItem("token", user.token);
+        dispatch(login(user));
+        localStorage.setItem("user", JSON.stringify(user));
         setErr(false);
         return navigate("/");
       })
