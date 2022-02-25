@@ -1,9 +1,14 @@
 import { NavLink } from "react-router-dom";
+import { useSelector , useDispatch } from "react-redux";
+import { logout } from "../../features/user";
 
 const Navbar = () => {
+  const username = useSelector((state) => state.user.value.username);
+  const dispatch = useDispatch()
 
-  const logout = () => {
-    // reset states from the user.
+  const clickLogout = () => {
+    // Resets the global redux state for the username.
+    dispatch(logout());
     localStorage.clear();
   }
 
@@ -12,7 +17,7 @@ const Navbar = () => {
       <div>
         <NavLink to="/">Home</NavLink>
       </div>
-      {!localStorage.getItem("token") ? (
+      {username === "" ? (
         <div className="flex justify-center flex-col sm:flex-row">
           <NavLink className="px-3" to="/login">
             Log in
@@ -23,7 +28,7 @@ const Navbar = () => {
         </div>
       ) : (
         <div className="flex justify-center flex-col sm:flex-row">
-          <p className="px-3" onClick={() => logout()} >Logout</p>
+          <p className="px-3" onClick={() => clickLogout()} >Logout</p>
         </div>
       )}
     </nav>

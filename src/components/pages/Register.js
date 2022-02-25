@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { registerUser } from "../../services/users";
 
 const Register = () => {
   const [formValue, setFormValue] = useState({
@@ -23,7 +23,7 @@ const Register = () => {
       errMsg: "",
     });
   };
-
+  
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -39,23 +39,19 @@ const Register = () => {
       return;
     }
 
-    // Now i should save the token to localStorage and the username to a redux global state.
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/api/register",
-        body
-      );
-      console.log(response.data);
-      setErr({
-        errMsg: "The username or password are invalid.",
+    registerUser(body)
+      .then(() => {
+        setErr({
+          errMsg: "",
+        });
+        navigate("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+        setErr({
+          errMsg: err.msg,
+        });
       });
-      return navigate("/login");
-    } catch (err) {
-      console.log(err);
-      setErr({
-        errMsg: "",
-      });
-    }
   };
 
   return (

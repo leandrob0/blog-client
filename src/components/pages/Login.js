@@ -1,6 +1,8 @@
-import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "../../services/users";
+import { useDispatch } from "react-redux";
+import { login } from "../../features/user";
 
 const Login = () => {
   const [formValue, setFormValue] = useState({
@@ -9,6 +11,7 @@ const Login = () => {
   });
   const [err, setErr] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const handleChange = (e) => {
     setFormValue({
@@ -25,19 +28,18 @@ const Login = () => {
       password: formValue.password,
     };
 
-    // Now i should save the token to localStorage and the username to a redux global state.
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/api/login",
-        body
-      );
-      console.log(response.data);
-      setErr(false);
-      return navigate("/");
-    } catch (err) {
-      console.log(err);
-      setErr(true);
-    }
+    loginUser(body)
+      .then(user => {
+        // Updates the redux global state to know which user makes a comment when logged in.
+        dispatch(login({id: user._id, username: user.username, admin: user.admin}));
+        localStorage.setItem("token", user.token);
+        setErr(false);
+        return navigate("/");
+      })
+      .catch(err => {
+        console.log(err);
+        setErr(true);
+      })
   };
 
   return (

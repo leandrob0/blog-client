@@ -1,13 +1,19 @@
-/* import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-const postSlice = createSlice({
-  name: "posts",
-  initialState: { value: {id: "", authorUsername: "", title: "", text: "", updatedAt: "", createdAt: ""} },
+const initialStateValue = { id: "" };
+
+export const postSlice = createSlice({
+  name: "post",
+  initialState: { value: initialStateValue },
   reducers: {
-      get_posts: (state, action) => {
-
-      }
-  }
+    clickedPost: (state, action) => {
+      state.value = action.payload;
+    },
+    resetClicked: (state) => {
+      state.value = initialStateValue;
+    },
+  },
 });
 
-export default postSlice; */
+export const { clickedPost, resetClicked } = postSlice.actions;
+export default postSlice.reducer;

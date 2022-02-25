@@ -5,10 +5,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
+import userReducer from "./features/user";
+import postReducer from "./features/post";
 
 // Redux store created.
 const store = configureStore({
-  reducer: {}
+  reducer: {
+    user: userReducer,
+    post: postReducer,
+  }
 });
 
 ReactDOM.render(
