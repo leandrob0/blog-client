@@ -6,7 +6,7 @@ Blog webpage done consuming a MongoDB and Express REST API.
 
 -[Link to API repo](https://github.com/leandrob0/blog-api)
 
--CMS repo: not done yet.
+-[Link to CMS repo](https://github.com/leandrob0/blog-cms)
 
 ## Built using 
 * React
