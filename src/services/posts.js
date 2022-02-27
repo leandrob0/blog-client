@@ -1,5 +1,10 @@
 import axios from "axios";
-const baseUrl = "/api/posts";
+const baseUrl = "http://localhost:5000/api/posts";
+
+export const getAllPosts = async () => {
+    const result = await axios.get(`${baseUrl}/sorted`);
+    return result.data;
+}
 
 // Returns X last post published (sorted by update time).
 export const getLastXpublishedPosts = async (limit) => {

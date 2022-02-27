@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getLastXpublishedPosts } from "../../services/posts";
+import { getAllPosts, getLastXpublishedPosts } from "../../services/posts";
 import { useDispatch } from "react-redux";
 import { resetClicked } from "../../features/post";
 
@@ -9,6 +9,7 @@ const LIMIT_POSTS = 6;
 
 const Homepage = () => {
   const [posts, setPosts] = useState([]);
+  const [showingAll, setShowingAll] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const  dispatch = useDispatch();
@@ -17,7 +18,13 @@ const Homepage = () => {
     // Resets the state of the current visited post.
     dispatch(resetClicked());
 
-    // Get all the posts
+  // According to Redux Docs, it is safe to add dispatch to the dependencies array. https://react-redux.js.org/api/hooks#usedispatch
+  }, [dispatch]);
+
+  useEffect(() => {
+
+    if(!showingAll) {
+      // Get all the posts
     setLoading(true);
     getLastXpublishedPosts(LIMIT_POSTS)
       .then(res => {
@@ -29,8 +36,22 @@ const Homepage = () => {
       .finally(() => {
         setLoading(false);
       })
-  // According to Redux Docs, it is safe to add dispatch to the dependencies array. https://react-redux.js.org/api/hooks#usedispatch
-  }, [dispatch]);
+    } else {
+      // Get all the posts
+    setLoading(true);
+    getAllPosts()
+      .then(res => {
+        setPosts(res.posts);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      })
+    }
+
+  }, [showingAll])
 
   // Check the posts state, if there are posts shows them, else, show there are no posts.
   return (
@@ -49,6 +70,9 @@ const Homepage = () => {
           }))
         }
       </section>
+      <div className="flex justify-center">
+      <button onClick={() => setShowingAll(!showingAll)} className="btn block mb-6">{showingAll ? "Show last 6 posts" : "Show all posts"}</button>
+      </div>
       {
         !loading && <footer className="h-12 border-t-2 flex justify-start text-gray-700 ">
         <div className="py-2 px-6">

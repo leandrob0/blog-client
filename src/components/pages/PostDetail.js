@@ -85,14 +85,14 @@ const PostDetail = () => {
           <div className="pt-6">
             <Link
               to="/login"
-              className="rounded px-2 py-2 mx-2 bg-indigo-700 text-white hover:bg-indigo-900 hover:shadow-indigo-600/2020 transition"
+              className="btn"
             >
               Log in
             </Link>
             Or
             <Link
               to="/register"
-              className="rounded px-2 py-2 mx-2 bg-indigo-700 text-white hover:bg-indigo-900 hover:shadow-indigo-600/2020 transition"
+              className="btn"
             >
               Register
             </Link>

@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn {
+    @apply rounded px-2 py-2 mx-2 bg-indigo-700 text-white hover:bg-indigo-900 hover:shadow-indigo-600/20 transition;
+}
