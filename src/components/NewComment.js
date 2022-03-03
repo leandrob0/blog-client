@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { createComment } from "../services/posts";
 
 const NewComment = ({post, updateComment}) => {
   const [comment, setComment] = useState("");
   const postId = useSelector((state) => state.post.value.postId);
   const user = useSelector((state) => state.user.value.username);
+  const navigate = useNavigate();
 
   const handleChange = (e) => setComment(e.target.value);
 
@@ -28,8 +30,10 @@ const NewComment = ({post, updateComment}) => {
         ...post,
         comments: response.comments,
       })
+      setComment("");
     } catch(err) {
       console.log(err);
+      return navigate("/err");
     }
   };
 

@@ -76,7 +76,7 @@ const Homepage = () => {
       {
         !loading && <footer className="h-12 border-t-2 flex justify-start text-gray-700 ">
         <div className="py-2 px-6">
-          <p>Made by: Leandro Bovino</p>
+          <p>Made by: <a className="font-bold underline text-blue-400" target="_blank" rel="noopener noreferrer" href="https://www.github.com/leandrob0">Leandro bovino</a></p>
         </div>
       </footer>
       }

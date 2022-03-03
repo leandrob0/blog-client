@@ -424,6 +424,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mb-3 {
   margin-bottom: 0.75rem;
 }
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+.block {
+  display: block;
+}
 .flex {
   display: flex;
 }
@@ -657,27 +663,60 @@ Ensure the default browser behavior of the `hidden` attribute.
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 6;
 }
+
+.btn {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 0.25rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(67 56 202 / var(--tw-bg-opacity));
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.btn:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(49 46 129 / var(--tw-bg-opacity));
+  --tw-shadow-color: rgb(79 70 229 / 0.2);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
 .invalid\:border-red-500:invalid {
   --tw-border-opacity: 1;
   border-color: rgb(239 68 68 / var(--tw-border-opacity));
 }
+
 .hover\:cursor-pointer:hover {
   cursor: pointer;
 }
+
 .hover\:bg-indigo-900:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(49 46 129 / var(--tw-bg-opacity));
 }
+
 .hover\:underline:hover {
   text-decoration-line: underline;
 }
+
 .focus\:border-gray-700:focus {
   --tw-border-opacity: 1;
   border-color: rgb(55 65 81 / var(--tw-border-opacity));
 }
+
 .focus\:outline-gray-700:focus {
   outline-color: #374151;
 }
+
 @media (min-width: 640px) {
 
   .sm\:m-12 {
@@ -706,6 +745,7 @@ Ensure the default browser behavior of the `hidden` attribute.
     --tw-shadow: var(--tw-shadow-colored);
   }
 }
+
 @media (min-width: 768px) {
 
   .md\:w-80 {

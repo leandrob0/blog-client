@@ -20,6 +20,7 @@ const PostDetail = () => {
       .then((res) => {
         const post = res.post;
         const comments = res.comments;
+        console.log(res);
 
         const date = formatDate(post.updatedAt);
 
