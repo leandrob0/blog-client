@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createComment } from "../services/posts";
 
-const NewComment = ({post, updateComment}) => {
+const NewComment = ({ post, updateComment }) => {
   const [comment, setComment] = useState("");
   const postId = useSelector((state) => state.post.value.postId);
   const user = useSelector((state) => state.user.value.username);
@@ -18,20 +18,20 @@ const NewComment = ({post, updateComment}) => {
     }
 
     const body = {
-      text: comment
-    }
+      text: comment,
+    };
 
     const token = JSON.parse(localStorage.getItem("user")).token;
-    if(!token) return;
+    if (!token) return;
 
     try {
       const response = await createComment(postId, token, body);
       updateComment({
         ...post,
         comments: response.comments,
-      })
+      });
       setComment("");
-    } catch(err) {
+    } catch (err) {
       console.log(err);
       return navigate("/err");
     }

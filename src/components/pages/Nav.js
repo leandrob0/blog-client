@@ -1,14 +1,14 @@
 import { NavLink } from "react-router-dom";
-import { useSelector , useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../features/user";
 
 const Navbar = () => {
   const username = useSelector((state) => state.user.value.username);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const clickLogout = () => {
     dispatch(logout());
-  }
+  };
 
   return (
     <nav className="flex justify-between bg-indigo-900 p-6 text-white">
@@ -26,7 +26,9 @@ const Navbar = () => {
         </div>
       ) : (
         <div className="flex justify-center">
-          <p className="px-3 hover:cursor-pointer" onClick={clickLogout} >Logout</p>
+          <p className="px-3 hover:cursor-pointer" onClick={clickLogout}>
+            Logout
+          </p>
         </div>
       )}
     </nav>

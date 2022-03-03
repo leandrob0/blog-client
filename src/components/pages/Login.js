@@ -11,7 +11,7 @@ const Login = () => {
   });
   const [err, setErr] = useState(false);
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormValue({
@@ -29,17 +29,17 @@ const Login = () => {
     };
 
     loginUser(body)
-      .then(user => {
+      .then((user) => {
         // Updates the redux global state to know which user makes a comment when logged in.
         dispatch(login(user));
         localStorage.setItem("user", JSON.stringify(user));
         setErr(false);
         return navigate("/");
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
         setErr(true);
-      })
+      });
   };
 
   return (
@@ -74,7 +74,11 @@ const Login = () => {
             required
           />
         </fieldset>
-        {err && <p className="text-red-700 max-w-[fit-content]">The username or password are incorrect!</p>}
+        {err && (
+          <p className="text-red-700 max-w-[fit-content]">
+            The username or password are incorrect!
+          </p>
+        )}
         <button className="rounded px-4 py-2 bg-indigo-700 text-white hover:bg-indigo-900 hover:shadow-indigo-600/2020 transition">
           Log in!
         </button>

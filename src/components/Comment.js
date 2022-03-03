@@ -10,9 +10,7 @@ const Comment = ({ author, text }) => {
           <b>{author}</b>
         </h3>
       ) : (
-        <h3 className="text-blue-600">
-          {author}
-        </h3>
+        <h3 className="text-blue-600">{author}</h3>
       )}
       <p>{text}</p>
     </div>

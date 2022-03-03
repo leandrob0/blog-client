@@ -84,17 +84,11 @@ const PostDetail = () => {
       <div>
         {username === "" ? (
           <div className="pt-6">
-            <Link
-              to="/login"
-              className="btn"
-            >
+            <Link to="/login" className="btn">
               Log in
             </Link>
             Or
-            <Link
-              to="/register"
-              className="btn"
-            >
+            <Link to="/register" className="btn">
               Register
             </Link>
             <p className="pt-3 text-center">To create comments</p>

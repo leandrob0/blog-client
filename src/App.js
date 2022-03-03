@@ -4,7 +4,7 @@ import Navbar from "./components/pages/Nav";
 import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
 import Homepage from "./components/pages/Homepage";
-import PostDetail from "./components/pages/PostDetail"
+import PostDetail from "./components/pages/PostDetail";
 import ErrorPage from "./components/ErrorPage";
 
 function App() {

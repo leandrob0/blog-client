@@ -23,7 +23,7 @@ const Register = () => {
       errMsg: "",
     });
   };
-  
+
   const onSubmit = async (e) => {
     e.preventDefault();
 

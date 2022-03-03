@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialStateValue = JSON.parse(localStorage.getItem("postId")) || { postId: "" };
+const initialStateValue = JSON.parse(localStorage.getItem("postId")) || {
+  postId: "",
+};
 
 export const postSlice = createSlice({
   name: "post",
