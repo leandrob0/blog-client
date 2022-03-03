@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "http://localhost:5000/api";
+const baseUrl = "https://leandroblog-api.herokuapp.com/api";
 
 export const registerUser = async (body) => {
   const result = await axios.post(`${baseUrl}/register`, body);

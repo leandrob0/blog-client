@@ -1,6 +1,6 @@
 {
   "short_name": "Blog webpage",
-  "name": "Create React App Sample",
+  "name": "Blog webpage client",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",

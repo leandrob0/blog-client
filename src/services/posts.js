@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "http://localhost:5000/api/posts";
+const baseUrl = "https://leandroblog-api.herokuapp.com/api/posts";
 
 export const getAllPosts = async () => {
   const result = await axios.get(`${baseUrl}/sorted`);
